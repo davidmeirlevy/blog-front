@@ -1,5 +1,5 @@
 <template>
-	<nuxt-link to="/"><img class="logo" src="/logo.png" alt="Greenpress blog platform"></nuxt-link>
+	<nuxt-link to="/">David Meir-Levy</nuxt-link>
 </template>
 <style scoped>
 	a {
@@ -7,21 +7,11 @@
 		padding: 10px 0;
 	}
 
-	.logo {
-		width: 150px;
-	}
-
-
 	@media all and (max-width: 720px) {
 		a {
 			text-align: center;
 			flex: 1;
 			padding: 5px 0;
-		}
-
-		.logo {
-			max-width: 100%;
-			max-height: 100px;
 		}
 	}
 </style>
