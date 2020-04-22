@@ -1,15 +1,20 @@
 <template>
 	<div class="breadcrumbs">
-		<nuxt-link to="/">Home</nuxt-link> >
+		<nuxt-link to="/">{{name}}</nuxt-link> >
 		<nuxt-link :to="{name: 'category', params: {category: post.category.path}}">{{post.category.name}}</nuxt-link> >
 		<span>{{post.title}}</span>
 	</div>
 </template>
 <script>
+  import useConfiguration from '../../../compositions/app-configuration'
+
   export default {
     props: {
       post: Object,
     },
+    setup() {
+      return useConfiguration()
+    }
   }
 </script>
 <style scoped>
