@@ -53,6 +53,10 @@
 
 	.post-content {
 		padding: 10px 0;
+		line-height: 150%;
+	}
+	.post-content p {
+		padding: 10px 0;
 	}
 
 	.tags-container {
