@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-		<Header :config="config"/>
+		<Header/>
 		<nuxt/>
 		<Footer/>
 		<div id="fb-root"></div>

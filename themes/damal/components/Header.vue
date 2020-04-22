@@ -8,20 +8,21 @@
 	</header>
 </template>
 <script>
-  import Logo from './Logo'
-  import SearchForm from './SearchForm'
-  import MainMenu from './MainMenu'
+	import Logo from './Logo'
+	import SearchForm from './SearchForm'
+	import MainMenu from './MainMenu'
+	import useConfiguration from '../../../compositions/app-configuration';
 
-  export default {
-  	props: {
-  		config: Object,
-    },
-    components: {
-      Logo,
-      SearchForm,
-      MainMenu,
-    }
-  }
+	export default {
+		setup() {
+			return {config: useConfiguration()}
+		},
+		components: {
+			Logo,
+			SearchForm,
+			MainMenu,
+		}
+	}
 </script>
 <style scoped lang="scss">
 	header {
