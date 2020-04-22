@@ -1,7 +1,7 @@
 <template>
 	<header>
 		<div class="top-header">
-			<Logo/>
+			<Logo :name="config.name"/>
 			<SearchForm class="search-form"/>
 		</div>
 		<MainMenu/>
@@ -13,6 +13,9 @@
   import MainMenu from './MainMenu'
 
   export default {
+  	props: {
+  		config: Object,
+    },
     components: {
       Logo,
       SearchForm,

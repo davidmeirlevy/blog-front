@@ -1,6 +1,13 @@
 <template>
-	<nuxt-link to="/">David Meir-Levy</nuxt-link>
+	<nuxt-link to="/">{{name}}</nuxt-link>
 </template>
+<script>
+	export default {
+		props: {
+			name: String
+		}
+	}
+</script>
 <style scoped>
 	a {
 		display: block;
