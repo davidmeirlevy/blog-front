@@ -71,7 +71,7 @@
 		max-width: 100%;
 		z-index: -1;
 		text-align: center;
-		opacity: 20%;
+		opacity: 0.2;
 
 		img {
 			max-width: 100%;
