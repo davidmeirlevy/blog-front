@@ -31,7 +31,7 @@
       return {
         title: this.post.title + ' - ' + this.post.category.name,
         meta: [
-          { vmid: 'description', name: 'description', content: this.post.title }
+          { hid: 'description', name: 'description', content: this.post.title }
         ]
       }
     }

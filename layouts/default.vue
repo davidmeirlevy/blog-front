@@ -20,7 +20,10 @@
           lang: this.config.language,
           dir: this.config.direction
         },
-        titleTemplate: `%s | ${this.config.titleSuffix}`
+        titleTemplate: `%s | ${this.config.titleSuffix}`,
+        meta: [
+          {hid: 'description', name: 'description', content: this.config.titleSuffix}
+        ]
       }
     }
   }

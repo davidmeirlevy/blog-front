@@ -18,7 +18,7 @@
       return {
         title: this.tag,
         meta: [
-          { vmid: 'description', name: 'description', content: this.tag }
+          { hid: 'description', name: 'description', content: this.tag }
         ]
       }
     }

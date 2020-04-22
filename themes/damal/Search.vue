@@ -19,7 +19,7 @@
 			return {
 				title,
 				meta: [
-					{vmid: 'description', name: 'description', content: title}
+					{hid: 'description', name: 'description', content: title}
 				]
 			}
 		}

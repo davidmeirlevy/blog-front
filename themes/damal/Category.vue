@@ -6,23 +6,23 @@
 </template>
 
 <script>
-	import PostsList from './components/PostsList';
+  import PostsList from './components/PostsList'
 
-	export default {
-		components: {PostsList},
-		props: {
-			category: Object,
-			posts: Array,
-		},
-		head() {
-			return {
-				title: this.category.name,
-				meta: [
-					{vmid: 'description', name: 'description', content: this.category.name}
-				]
-			}
-		}
-	}
+  export default {
+    components: { PostsList },
+    props: {
+      category: Object,
+      posts: Array,
+    },
+    head () {
+      return {
+        title: this.category.name,
+        meta: [
+          { hid: 'description', name: 'description', content: this.category.name }
+        ]
+      }
+    }
+  }
 </script>
 
 <style scoped>

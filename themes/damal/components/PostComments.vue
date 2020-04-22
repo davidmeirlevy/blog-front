@@ -33,7 +33,7 @@
     head () {
       return {
         script: [{
-          vmid: 'facebook',
+          hid: 'facebook',
           src: 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=1126115047726666',
           crossorigin: 'anonymous',
           async: true, defer: true

@@ -18,7 +18,7 @@
           return this.metadata.title
         },
         meta: [
-          { vmid: 'description', name: 'description', content: this.metadata.title }
+          { hid: 'description', name: 'description', content: this.metadata.title }
         ]
       }
     }

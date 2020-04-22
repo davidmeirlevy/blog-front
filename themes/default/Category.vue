@@ -18,7 +18,7 @@
       return {
         title: this.category.name,
         meta: [
-          { vmid: 'description', name: 'description', content: this.category.name }
+          { hid: 'description', name: 'description', content: this.category.name }
         ]
       }
     }

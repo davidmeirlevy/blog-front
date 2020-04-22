@@ -12,7 +12,10 @@
 			         v-html="content">
 			</section>
 		</article>
-		<div class="tags-container" v-if="post.tags.length"><div>Related tags:&nbsp;</div><Tags :tags="post.tags"/></div>
+		<div class="tags-container" v-if="post.tags.length">
+			<div>Related tags:&nbsp;</div>
+			<Tags :tags="post.tags"/>
+		</div>
 		<SharePost :post="post"/>
 		<PostComments :post="post"/>
 	</div>
@@ -30,7 +33,7 @@
       post: Object,
     },
     components: { PostComments, Tags, SharePost, PostBreadcrumbs },
-    setup(props) {
+    setup (props) {
       return {
         authors: computed(() => props.post.authors ? props.post.authors.map(a => a.name).join(', ') : '')
       }
@@ -39,7 +42,16 @@
       return {
         title: this.post.title + ' - ' + this.post.category.name,
         meta: [
-          { vmid: 'description', name: 'description', content: this.post.title }
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.post.short ?
+              this.post.short
+                .substr(0, 100)
+                .replace(/<[^>]*>/g, '') :
+              this.post.title
+          },
+          { hid: 'keywords', name: 'keywords', content: this.post.tags.join(', ') },
         ]
       }
     }
