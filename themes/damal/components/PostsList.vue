@@ -4,7 +4,8 @@
 			<div v-if="post.thumbnail"><img :src="post.thumbnail" :alt="post.title"></div>
 			<div>
 				<h3>
-					<nuxt-link :to="{params: {post: post.path, category: post.category.path || post.category}, name: 'category-post'}">
+					<nuxt-link
+							:to="{params: {post: post.path, category: post.category.path || post.category}, name: 'category-post'}">
 						{{post.title}}
 					</nuxt-link>
 				</h3>
@@ -36,7 +37,7 @@
 	}
 
 	img {
-		padding-right: 20px;
+		padding: 0 10px;
 		width: 200px;
 	}
 

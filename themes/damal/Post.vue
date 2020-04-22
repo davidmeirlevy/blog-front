@@ -6,6 +6,7 @@
 			<p>
 				<small>{{authors}} | {{post.created | dateTime}}</small>
 			</p>
+			<div v-if="post.thumbnail" class="thumbnail-container"><img :src="post.thumbnail" :alt="post.title"></div>
 			<section class="post-content"
 			         v-for="(content, index) in post.contents"
 			         :key="index"
@@ -58,9 +59,24 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.post {
 		padding: 10px;
+	}
+
+	.thumbnail-container {
+		position: relative;
+		height: 0;
+		overflow: visible;
+		max-width: 100%;
+		opacity: 15%;
+		z-index: -1;
+		text-align: center;
+
+		img {
+			max-width: 100%;
+			max-height: 400px;
+		}
 	}
 
 	.post-content {
