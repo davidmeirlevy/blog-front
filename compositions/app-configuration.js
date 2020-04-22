@@ -10,7 +10,7 @@ const configuration = Vue.observable({
   titleSuffix: ''
 })
 
-let promise;
+let promise
 
 function getConfiguration ($axios) {
   if (promise || configuration.loaded) {
@@ -23,7 +23,7 @@ function getConfiguration ($axios) {
       configuration.titleSuffix = `${configuration.name} - ${configuration.description}`
       configuration.loaded = true
     })
-  return promise;
+  return promise
 }
 
 export default function useConfiguration () {

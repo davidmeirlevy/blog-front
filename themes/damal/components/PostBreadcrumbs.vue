@@ -1,6 +1,6 @@
 <template>
 	<div class="breadcrumbs">
-		<nuxt-link to="/">{{name}}</nuxt-link> >
+		<nuxt-link to="/">{{config.name}}</nuxt-link> >
 		<nuxt-link :to="{name: 'category', params: {category: post.category.path}}">{{post.category.name}}</nuxt-link> >
 		<span>{{post.title}}</span>
 	</div>
@@ -12,8 +12,8 @@
     props: {
       post: Object,
     },
-    setup() {
-      return useConfiguration()
+    setup () {
+      return { config: useConfiguration() }
     }
   }
 </script>
