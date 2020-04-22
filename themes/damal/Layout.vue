@@ -9,29 +9,16 @@
 <script>
   import Footer from './components/Footer'
   import Header from './components/Header'
-  import useConfiguration from '../../compositions/app-configuration'
 
   export default {
     components: {
       Header,
       Footer
     },
-    setup () {
-      return {
-        config: useConfiguration()
-      }
-    },
-    head () {
-      return {
-        htmlAttrs: {
-          lang: this.config.language,
-          dir: this.config.direction
-        },
-        titleTemplate: `%s | ${this.config.titleSuffix}`,
-        link: [
-          { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Pontano+Sans&display=swap' }
-        ]
-      }
+    head: {
+      link: [
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Pontano+Sans&display=swap' }
+      ]
     }
   }
 </script>
