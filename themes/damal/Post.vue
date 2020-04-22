@@ -69,7 +69,7 @@
 		height: 0;
 		overflow: visible;
 		max-width: 100%;
-		opacity: 15%;
+		opacity: 20%;
 		z-index: -1;
 		text-align: center;
 
