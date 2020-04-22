@@ -23,40 +23,40 @@
 </template>
 
 <script>
-  import PostBreadcrumbs from './components/PostBreadcrumbs'
-  import SharePost from './components/SharePost'
-  import Tags from './components/Tags'
-  import PostComments from './components/PostComments'
-  import { computed } from '@vue/composition-api'
+	import PostBreadcrumbs from './components/PostBreadcrumbs'
+	import SharePost from './components/SharePost'
+	import Tags from './components/Tags'
+	import PostComments from './components/PostComments'
+	import {computed} from '@vue/composition-api'
 
-  export default {
-    props: {
-      post: Object,
-    },
-    components: { PostComments, Tags, SharePost, PostBreadcrumbs },
-    setup (props) {
-      return {
-        authors: computed(() => props.post.authors ? props.post.authors.map(a => a.name).join(', ') : '')
-      }
-    },
-    head () {
-      return {
-        title: this.post.title + ' - ' + this.post.category.name,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: this.post.short ?
-              this.post.short
-                .substr(0, 100)
-                .replace(/<[^>]*>/g, '') :
-              this.post.title
-          },
-          { hid: 'keywords', name: 'keywords', content: this.post.tags.join(', ') },
-        ]
-      }
-    }
-  }
+	export default {
+		props: {
+			post: Object,
+		},
+		components: {PostComments, Tags, SharePost, PostBreadcrumbs},
+		setup(props) {
+			return {
+				authors: computed(() => props.post.authors ? props.post.authors.map(a => a.name).join(', ') : '')
+			}
+		},
+		head() {
+			return {
+				title: this.post.title + ' - ' + this.post.category.name,
+				meta: [
+					{
+						hid: 'description',
+						name: 'description',
+						content: this.post.short ?
+								this.post.short
+										.substr(0, 100)
+										.replace(/<[^>]*>/g, '') :
+								this.post.title
+					},
+					{hid: 'keywords', name: 'keywords', content: this.post.tags.join(', ')},
+				]
+			}
+		}
+	}
 </script>
 
 <style scoped lang="scss">
@@ -69,9 +69,9 @@
 		height: 0;
 		overflow: visible;
 		max-width: 100%;
-		opacity: 20%;
 		z-index: -1;
 		text-align: center;
+		opacity: 20%;
 
 		img {
 			max-width: 100%;
@@ -83,6 +83,7 @@
 		padding: 10px 0;
 		line-height: 150%;
 	}
+
 	.post-content /deep/ p {
 		padding: 10px 0;
 	}
