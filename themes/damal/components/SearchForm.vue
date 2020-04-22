@@ -54,7 +54,7 @@
 	}
 
 	button {
-		margin-left: 5px;
+		margin: 0 5px;
 		cursor: pointer;
 		background-color: #f6f6f6;
 		transition: background-color 0.2s ease-in-out;

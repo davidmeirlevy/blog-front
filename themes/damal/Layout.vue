@@ -23,7 +23,11 @@
     },
     head () {
       return {
-        titleTemplate: `%s | ${this.config.name} - ${this.config.description}`,
+        htmlAttrs: {
+          lang: this.config.language,
+          dir: this.config.direction
+        },
+        titleTemplate: `%s | ${this.config.titleSuffix}`,
         link: [
           { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Pontano+Sans&display=swap' }
         ]
@@ -37,6 +41,10 @@
 	html {
 		font-family: 'Pontano Sans', sans-serif;
 		font-size: 16px;
+	}
+
+	html[dir="rtl"] {
+		text-align: right;
 	}
 
 	*,

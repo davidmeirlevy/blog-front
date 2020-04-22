@@ -22,7 +22,7 @@
 		padding: 0 5px;
 		background-color: $mainColor;
 		color: #fff;
-		margin-right: 5px;
+		margin: 0 2.5px;
 		text-decoration: none;
 		transition: background-color 0.2s linear;
 

@@ -39,7 +39,7 @@
 		.menu-opener {
 			width: 36px;
 			height: 36px;
-			margin-left: 10px;
+			margin: 0 10px;
 			cursor: pointer;
 			background-color: $mainColor;
 			border-radius: 5px;
@@ -80,11 +80,21 @@
 			flex-direction: column;
 			transition: left 150ms ease-in-out;
 			padding-top: 20px;
+
+			@at-root html[dir="rtl"] #{&} {
+				left: auto;
+				right: -80%;
+				transition-property: right;
+			}
 		}
 
 		.active {
 			.menu {
 				left: 0;
+				@at-root html[dir="rtl"] #{&} {
+					left: auto;
+					right: 0;
+				}
 			}
 
 			.menu-closer {

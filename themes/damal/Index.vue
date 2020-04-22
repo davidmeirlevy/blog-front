@@ -14,6 +14,7 @@
   import PostsList from './components/PostsList'
   import TagsBox from './components/TagsBox'
   import { computed } from '@vue/composition-api'
+  import useConfiguration from '../../compositions/app-configuration'
 
   export default {
     props: {
@@ -31,7 +32,13 @@
       })
       return {
         topPosts,
-        otherPosts
+        otherPosts,
+        config: useConfiguration()
+      }
+    },
+    head () {
+      return {
+        titleTemplate: `${this.config.titleSuffix}`
       }
     }
   }
