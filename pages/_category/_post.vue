@@ -2,17 +2,15 @@
 	<Post :post="metadata"/>
 </template>
 <script>
-  import { createNamespacedHelpers } from 'vuex'
-  import { name, DATA } from '../../store/post/consts'
   import Post from '~/.current_theme/Post'
-
-  const { mapState } = createNamespacedHelpers(name)
+  import usePostState from '../../compositions/post-state'
 
   export default {
-    middleware: 'load-post',
-    computed: mapState({ metadata: DATA.METADATA }),
     components: { Post },
-    metaInfo() {
+    setup () {
+      return usePostState()
+    },
+    metaInfo () {
       return {
         title () {
           return this.metadata.title

@@ -21,8 +21,9 @@ function getConfiguration ($axios) {
     .then(config => {
       Object.assign(configuration, config.metadata)
       configuration.titleSuffix = `${configuration.name} - ${configuration.description}`
-      configuration.loaded = true
     })
+    .catch(() => null)
+    .finally(() => configuration.loaded = true)
   return promise
 }
 

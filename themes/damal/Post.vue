@@ -69,9 +69,9 @@
 		height: 0;
 		overflow: visible;
 		max-width: 100%;
+		opacity: 0.2;
 		z-index: -1;
 		text-align: center;
-		opacity: 0.2;
 
 		img {
 			max-width: 100%;
