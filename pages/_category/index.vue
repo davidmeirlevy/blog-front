@@ -8,8 +8,8 @@
 
   export default {
     components: { Category },
-    setup (_, { root: { $route } }) {
-      return useCategoryState($route.params.category)
+    setup () {
+      return useCategoryState()
     }
   }
 </script>

@@ -1,15 +1,17 @@
 <template>
 	<div>
 		<h1>Search results for "<i>{{query}}</i>"</h1>
-		<PostsList :posts="posts"/>
+		<PostsList v-if="posts" :posts="posts"/>
+		<Loader v-else/>
 	</div>
 </template>
 
 <script>
 	import PostsList from './components/PostsList';
+    import Loader from './components/Loader'
 
 	export default {
-		components: {PostsList},
+		components: { Loader, PostsList},
 		props: {
 			query: String,
 			posts: Array,

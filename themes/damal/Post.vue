@@ -1,5 +1,5 @@
 <template>
-	<div class="post">
+	<div v-if="post" class="post">
 		<PostBreadcrumbs :post="post"/>
 		<article>
 			<h1>{{post.title}}</h1>
@@ -20,43 +20,28 @@
 		<SharePost :post="post"/>
 		<PostComments :post="post"/>
 	</div>
+	<Loader v-else/>
 </template>
 
 <script>
-	import PostBreadcrumbs from './components/PostBreadcrumbs'
-	import SharePost from './components/SharePost'
-	import Tags from './components/Tags'
-	import PostComments from './components/PostComments'
-	import {computed} from '@vue/composition-api'
+  import PostBreadcrumbs from './components/PostBreadcrumbs'
+  import SharePost from './components/SharePost'
+  import Tags from './components/Tags'
+  import PostComments from './components/PostComments'
+  import { computed } from '@vue/composition-api'
+  import Loader from './components/Loader'
 
-	export default {
-		props: {
-			post: Object,
-		},
-		components: {PostComments, Tags, SharePost, PostBreadcrumbs},
-		setup(props) {
-			return {
-				authors: computed(() => props.post.authors ? props.post.authors.map(a => a.name).join(', ') : '')
-			}
-		},
-		head() {
-			return {
-				title: this.post.title + ' - ' + this.post.category.name,
-				meta: [
-					{
-						hid: 'description',
-						name: 'description',
-						content: this.post.short ?
-								this.post.short
-										.substr(0, 100)
-										.replace(/<[^>]*>/g, '') :
-								this.post.title
-					},
-					{hid: 'keywords', name: 'keywords', content: this.post.tags.join(', ')},
-				]
-			}
-		}
-	}
+  export default {
+    props: {
+      post: Object,
+    },
+    components: { Loader, PostComments, Tags, SharePost, PostBreadcrumbs },
+    setup (props) {
+      return {
+        authors: computed(() => props.post.authors ? props.post.authors.map(a => a.name).join(', ') : '')
+      }
+    }
+  }
 </script>
 
 <style scoped lang="scss">
@@ -86,6 +71,13 @@
 
 	.post-content /deep/ p {
 		padding: 10px 0;
+	}
+
+	.post-content /deep/ blockquote {
+		margin: 10px;
+		padding: 10px;
+		font-family: monospace;
+		background-color: #ccc;
 	}
 
 	.tags-container {

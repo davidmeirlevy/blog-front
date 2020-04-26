@@ -6,7 +6,7 @@
 			<TagsBox :tags="tags"/>
 			<PostsList :posts="otherPosts"/>
 		</template>
-		<template v-else>Loading..</template>
+		<Loader v-else/>
 	</div>
 </template>
 <script>
@@ -15,13 +15,14 @@
   import TagsBox from './components/TagsBox'
   import { computed } from '@vue/composition-api'
   import useConfiguration from '../../compositions/app-configuration'
+  import Loader from './components/Loader'
 
   export default {
     props: {
       posts: Array,
       tags: Array
     },
-    components: { TagsBox, PostsList, TopPostsGroup },
+    components: { Loader, TagsBox, PostsList, TopPostsGroup },
     setup (props) {
       const topPosts = computed(() => {
         return props.posts ? props.posts.filter((post, index) => index < 5) : []

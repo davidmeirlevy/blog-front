@@ -1,8 +1,9 @@
 import { computed, onServerPrefetch, getCurrentInstance } from '@vue/composition-api'
 import { ACTIONS, DATA, name } from '../store/category/consts'
 
-export default function useCategoryState (category) {
-  const { $store } = getCurrentInstance()
+export default function useCategoryState () {
+  const { $store, $route } = getCurrentInstance()
+  const category = $route.params.category
 
   const promise = $store.dispatch(name + '/' + ACTIONS.INIT, category)
   onServerPrefetch(() => promise)
