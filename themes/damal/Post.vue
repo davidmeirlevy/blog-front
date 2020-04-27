@@ -6,6 +6,7 @@
 			<p>
 				<small>{{authors}} | {{post.created | dateTime}}</small>
 			</p>
+			<div v-if="post.short" v-html="post.short" class="post-short"></div>
 			<div v-if="post.thumbnail" class="thumbnail-container"><img :src="post.thumbnail" :alt="post.title"></div>
 			<section class="post-content"
 			         v-for="(content, index) in post.contents"
@@ -49,13 +50,12 @@
 		padding: 10px;
 	}
 
+	.post-short {
+		font-weight: bold;
+		font-size: 110%;
+	}
+
 	.thumbnail-container {
-		position: relative;
-		height: 0;
-		overflow: visible;
-		max-width: 100%;
-		opacity: 0.2;
-		z-index: -1;
 		text-align: center;
 
 		img {
@@ -64,7 +64,7 @@
 		}
 	}
 
-	.post-content {
+	.post-content, .post-short {
 		padding: 10px 0;
 		line-height: 150%;
 	}
