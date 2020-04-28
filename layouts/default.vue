@@ -22,7 +22,8 @@
         },
         titleTemplate: `%s | ${this.config.titleSuffix}`,
         meta: [
-          {hid: 'description', name: 'description', content: this.config.titleSuffix}
+          { hid: 'description', name: 'description', content: this.config.description },
+          { hid: 'keywords', name: 'keywords', content: this.config.keywords }
         ]
       }
     }

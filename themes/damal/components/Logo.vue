@@ -1,12 +1,14 @@
 <template>
-	<nuxt-link to="/"><img class="logo" src="/damal.svg" :alt="name"></nuxt-link>
+	<nuxt-link to="/"><img class="logo" :src="logoUrl || '/damal.svg'" :alt="siteName"></nuxt-link>
 </template>
 <script>
-	export default {
-		props: {
-			name: String
-		}
-	}
+  export default {
+    name: 'Logo',
+    props: {
+      logoUrl: String,
+      siteName: String
+    }
+  }
 </script>
 <style scoped>
 	a {
@@ -17,6 +19,7 @@
 	.logo {
 		width: 150px;
 	}
+
 
 	@media all and (max-width: 720px) {
 		a {

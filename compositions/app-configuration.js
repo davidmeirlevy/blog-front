@@ -4,7 +4,10 @@ import { onServerPrefetch, getCurrentInstance } from '@vue/composition-api'
 const configuration = Vue.observable({
   loaded: false,
   name: '',
+  logoUrl: '',
   description: '',
+  keywords: '',
+  slogan: '',
   language: 'en',
   direction: 'ltr',
   titleSuffix: ''
@@ -20,7 +23,7 @@ function getConfiguration ($axios) {
     .$get(`api/configurations/app-configuration`)
     .then(config => {
       Object.assign(configuration, config.metadata)
-      configuration.titleSuffix = `${configuration.name} - ${configuration.description}`
+      configuration.titleSuffix = `${configuration.name} - ${configuration.slogan}`
     })
     .catch(() => null)
     .finally(() => configuration.loaded = true)

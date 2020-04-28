@@ -1,28 +1,28 @@
 <template>
 	<header>
 		<div class="top-header">
-			<Logo :name="config.name"/>
+			<Logo v-once :logo-url="config.logoUrl" :site-name="config.titleSuffix"/>
 			<SearchForm class="search-form"/>
 		</div>
 		<MainMenu/>
 	</header>
 </template>
 <script>
-	import Logo from './Logo'
-	import SearchForm from './SearchForm'
-	import MainMenu from './MainMenu'
-	import useConfiguration from '../../../compositions/app-configuration';
+  import Logo from './Logo'
+  import SearchForm from './SearchForm'
+  import MainMenu from './MainMenu'
+  import useConfiguration from '../../../compositions/app-configuration'
 
-	export default {
-		setup() {
-			return {config: useConfiguration()}
-		},
-		components: {
-			Logo,
-			SearchForm,
-			MainMenu,
-		}
-	}
+  export default {
+    components: {
+      Logo,
+      SearchForm,
+      MainMenu,
+    },
+    setup () {
+      return { config: useConfiguration() }
+    }
+  }
 </script>
 <style scoped lang="scss">
 	header {
