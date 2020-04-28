@@ -12,7 +12,8 @@ export default {
     ])
   },
   [ACTIONS.LOAD_POSTS] ({ commit }, category) {
-    return this.$axios.$get(`api/categories/${category}/posts?isPublic=true`)
+    return this.$axios.$get(`api/categories/${category}/posts`,
+      { params: { target: 'front' } })
       .then(list => commit(MUTATIONS.SET_POSTS, list))
   },
   [ACTIONS.LOAD_CATEGORY] ({ commit }, category) {
