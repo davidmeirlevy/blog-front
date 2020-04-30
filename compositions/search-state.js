@@ -5,7 +5,11 @@ export default function useSearch (query) {
   const posts = ref(null)
 
   function getPosts () {
-    return $axios.$get(`api/posts`, { params: { q: query.value } }).then(list => {
+    if (query.value.trim().length < 2) {
+      posts.value = []
+      return Promise.resolve()
+    }
+    return $axios.$get(`api/posts`, { params: { q: query.value, target: 'front' } }).then(list => {
       posts.value = list
     })
   }

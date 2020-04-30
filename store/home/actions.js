@@ -8,7 +8,7 @@ export default {
     ])
   },
   [ACTIONS.LOAD_POSTS] ({ commit }) {
-    return this.$axios.$get(`api/posts?isPublic=true`)
+    return this.$axios.$get(`api/posts`, { params: { target: 'front' } })
       .then(list => commit(MUTATIONS.SET_POSTS, list))
   },
   [ACTIONS.LOAD_TAGS] ({ commit }) {
