@@ -5,7 +5,7 @@ export default function useSearch (query) {
   const posts = ref(null)
 
   function getPosts () {
-    if (query.value.trim().length < 2) {
+    if (query.value && query.value.trim().length < 2) {
       posts.value = []
       return Promise.resolve()
     }

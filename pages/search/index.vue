@@ -5,7 +5,6 @@
 <script>
   import Search from '~/.current_theme/Search'
   import useSearch from '../../compositions/search-state'
-  import { ref, watch } from '@vue/composition-api'
   import { useQueryParam } from '../../compositions/query-param'
 
   export default {
