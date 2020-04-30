@@ -1,11 +1,10 @@
 function setHostRedirect (app, applicationUrl) {
-  const { host, protocol } = new URL(applicationUrl)
+  const host = new URL(applicationUrl).host
 
   function hostRedirect (req, res, next) {
     const requestHost = req.header('host')
-    const requestProtocol = req.header('protocol')
 
-    if (requestHost === host && requestProtocol === protocol) {
+    if (requestHost === host) {
       next()
     } else {
       res.redirect(301, new URL(req.path, applicationUrl))
