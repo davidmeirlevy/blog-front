@@ -9,6 +9,8 @@ export function usePostState () {
   }
 }
 
-export function useFetchPost ($store, $route) {
-  return $store.dispatch(name + '/' + ACTIONS.INIT, $route.params)
+export function useFetchPost ($store, $route, error) {
+  return $store.dispatch(name + '/' + ACTIONS.INIT, $route.params).catch(() => {
+    error({ statusCode: 404, message: 'Post not found' })
+  })
 }

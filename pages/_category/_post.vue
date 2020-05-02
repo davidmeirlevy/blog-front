@@ -8,7 +8,7 @@
   export default {
     components: { Post },
     asyncData (context) {
-      return useFetchPost(context.store, context.route)
+      return useFetchPost(context.store, context.route, context.error)
     },
     setup () {
       return usePostState()
