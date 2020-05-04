@@ -3,13 +3,14 @@
 </template>
 <script>
   import Layout from '~/.current_theme/Layout'
-  import useConfiguration from '../compositions/app-configuration'
+  import { useConfiguration, fetchConfiguration } from '../compositions/app-configuration'
 
   export default {
     components: {
       Layout
     },
     setup () {
+      fetchConfiguration()
       return {
         config: useConfiguration()
       }

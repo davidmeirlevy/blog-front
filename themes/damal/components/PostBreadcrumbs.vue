@@ -6,7 +6,7 @@
 	</div>
 </template>
 <script>
-  import useConfiguration from '../../../compositions/app-configuration'
+  import { useConfiguration } from '../../../compositions/app-configuration'
 
   export default {
     props: {

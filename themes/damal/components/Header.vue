@@ -11,7 +11,7 @@
   import Logo from './Logo'
   import SearchForm from './SearchForm'
   import MainMenu from './MainMenu'
-  import useConfiguration from '../../../compositions/app-configuration'
+  import { useConfiguration } from '../../../compositions/app-configuration'
 
   export default {
     components: {
