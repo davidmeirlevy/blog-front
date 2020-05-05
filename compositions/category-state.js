@@ -1,12 +1,13 @@
-import { computed, onServerPrefetch, getCurrentInstance } from '@vue/composition-api'
+import { computed, getCurrentInstance } from '@vue/composition-api'
 import { ACTIONS, DATA, name } from '../store/category/consts'
 
-export default function useCategoryState () {
-  const { $store, $route } = getCurrentInstance()
+export function fetchCategory ($store, $route) {
   const category = $route.params.category
+  return $store.dispatch(name + '/' + ACTIONS.INIT, category)
+}
 
-  const promise = $store.dispatch(name + '/' + ACTIONS.INIT, category)
-  onServerPrefetch(() => promise)
+export function useCategoryState () {
+  const { $store } = getCurrentInstance()
   return {
     posts: computed(() => $store.state[name][DATA.POSTS]),
     metadata: computed(() => $store.state[name][DATA.METADATA]),

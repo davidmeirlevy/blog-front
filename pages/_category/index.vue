@@ -4,10 +4,13 @@
 
 <script>
   import Category from '~/.current_theme/Category'
-  import useCategoryState from '../../compositions/category-state'
+  import { useCategoryState, fetchCategory } from '../../compositions/category-state'
 
   export default {
     components: { Category },
+    asyncData ({ store, route }) {
+      return fetchCategory(store, route)
+    },
     setup () {
       return useCategoryState()
     }
