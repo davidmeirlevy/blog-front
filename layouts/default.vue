@@ -11,9 +11,7 @@
     },
     middleware: 'layout-data',
     setup () {
-      return {
-        config: useConfiguration()
-      }
+      return { config: useConfiguration() }
     },
     head () {
       return {
