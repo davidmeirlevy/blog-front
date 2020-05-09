@@ -3,14 +3,15 @@
 		<div class="menu-opener" @click="active = true">-</div>
 		<div class="menu-closer" @click="active = false"/>
 		<div class="menu">
-			<menuLink v-for="(item, index) of links" :link="item" :key="index" class="link" @click.native="active = false"/>
+			<menuLink v-for="(item, index) of links" :link="item" :key="index" class="link"
+			          @click.native="active = false"/>
 		</div>
 	</div>
 </template>
 <script>
   import MenuLink from '../../../components/MenuLink'
   import { ref } from '@vue/composition-api'
-  import useMenuLinks from '../../../compositions/main-menu'
+  import { useMenuLinks } from '../../../compositions/main-menu'
 
   export default {
     components: { MenuLink },
@@ -56,6 +57,7 @@
 				text-align: center;
 				line-height: 10px;
 			}
+
 			&:before {
 				margin-top: -13px;
 				vertical-align: top;
