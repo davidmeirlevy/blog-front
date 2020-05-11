@@ -1,5 +1,7 @@
-import { computed, getCurrentInstance } from '@vue/composition-api'
+import { createNamespacedHelpers } from 'vuex-composition-helpers/dist'
 import { ACTIONS, DATA, name } from '../store/category/consts'
+
+const { useState } = createNamespacedHelpers(name)
 
 export function fetchCategory ($store, $route) {
   const category = $route.params.category
@@ -7,9 +9,8 @@ export function fetchCategory ($store, $route) {
 }
 
 export function useCategoryState () {
-  const { $store } = getCurrentInstance()
-  return {
-    posts: computed(() => $store.state[name][DATA.POSTS]),
-    metadata: computed(() => $store.state[name][DATA.METADATA]),
-  }
+  return useState({
+    posts: DATA.POSTS,
+    metadata: DATA.METADATA
+  })
 }

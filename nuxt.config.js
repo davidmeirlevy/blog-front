@@ -67,7 +67,10 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    transpile: [
+      'vuex-composition-helpers'
+    ]
   },
   extractCSS: {
     allChunks: true

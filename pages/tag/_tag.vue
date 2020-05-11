@@ -4,10 +4,13 @@
 
 <script>
   import Tag from '~/.current_theme/Tag'
-  import useTagPosts from '../../compositions/tag-posts'
+  import { fetchTagPosts, useTagPosts } from '../../compositions/tag-posts'
 
   export default {
     components: { Tag },
+    asyncData ({ store, route }) {
+      return fetchTagPosts(store, route)
+    },
     setup () {
       return useTagPosts()
     },

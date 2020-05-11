@@ -1,15 +1,15 @@
-import { computed, getCurrentInstance } from '@vue/composition-api'
+import { createNamespacedHelpers } from 'vuex-composition-helpers/dist'
 import { ACTIONS, DATA, name } from '../store/home/consts'
+
+const { useState } = createNamespacedHelpers(name)
 
 export function fetchHomeData ($store) {
   return $store.dispatch(name + '/' + ACTIONS.INIT)
 }
 
 export function useHomeState () {
-  const { $store } = getCurrentInstance()
-
-  return {
-    posts: computed(() => $store.state[name][DATA.POSTS]),
-    tags: computed(() => $store.state[name][DATA.TAGS]),
-  }
+  return useState({
+    posts: DATA.POSTS,
+    tags: DATA.TAGS,
+  })
 }

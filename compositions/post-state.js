@@ -1,12 +1,12 @@
-import { computed, getCurrentInstance } from '@vue/composition-api'
+import { createNamespacedHelpers } from 'vuex-composition-helpers/dist'
 import { ACTIONS, DATA, name } from '../store/post/consts'
 
-export function usePostState () {
-  const { $store } = getCurrentInstance()
+const { useState } = createNamespacedHelpers(name)
 
-  return {
-    post: computed(() => $store.state[name][DATA.METADATA]),
-  }
+export function usePostState () {
+  return useState({
+    post: DATA.METADATA
+  })
 }
 
 export function useFetchPost ($store, $route, error) {

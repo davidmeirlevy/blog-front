@@ -1,4 +1,4 @@
-import { computed, getCurrentInstance } from '@vue/composition-api'
+import { createNamespacedHelpers } from 'vuex-composition-helpers/dist'
 import { ACTIONS, GETTERS, name } from '../store/menus/consts'
 
 export function fetchMenuLinks ($store) {
@@ -6,6 +6,7 @@ export function fetchMenuLinks ($store) {
 }
 
 export function useMenuLinks () {
-  const { $store } = getCurrentInstance()
-  return computed(() => $store.getters[name + '/' + GETTERS.MAIN_MENU_LINKS])
+  const { useGetters } = createNamespacedHelpers(name)
+  const getters = useGetters([GETTERS.MAIN_MENU_LINKS])
+  return getters[GETTERS.MAIN_MENU_LINKS]
 }
