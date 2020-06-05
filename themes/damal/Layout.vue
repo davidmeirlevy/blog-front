@@ -17,7 +17,7 @@
     },
     head: {
       link: [
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Pontano+Sans&display=swap' }
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap' }
       ]
     }
   }
@@ -26,7 +26,7 @@
 	@import "colors";
 
 	html {
-		font-family: 'Pontano Sans', sans-serif;
+		font-family: 'Rubik', sans-serif;
 		font-size: 16px;
 	}
 
