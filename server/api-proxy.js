@@ -1,5 +1,5 @@
 const proxy = require('http-proxy-middleware')
-const { authService, contentService, adminPanel, assetsService } = require('../config')
+const { authService, contentService, adminPanel, assetsService, tenant } = require('../config')
 
 /**
  * This function is a temporary thingy because I'm too lazy right now
@@ -8,24 +8,16 @@ const { authService, contentService, adminPanel, assetsService } = require('../c
  * @param app: Express.Application
  */
 module.exports = function apiProxy (app) {
-  const authProxy = proxy({
-    target: `${authService.protocol}://${authService.url}:${authService.port}`,
-    changeOrigin: true
-  })
-  const contentProxy = proxy({
-    target: `${contentService.protocol}://${contentService.url}:${contentService.port}`,
-    changeOrigin: true
-  })
 
-  const adminProxy = proxy({
-    target: `${adminPanel.protocol}://${adminPanel.url}:${adminPanel.port}`,
-    changeOrigin: true
-  })
-
-  const assetsProxy = proxy({
-    target: `${assetsService.protocol}://${assetsService.url}:${assetsService.port}`,
-    changeOrigin: true
-  })
+  function getProxy (target) {
+    return proxy({
+      target,
+      changeOrigin: true,
+      headers: {
+        tenant
+      }
+    })
+  }
 
   app.use([
       '/api/signin',
@@ -34,8 +26,7 @@ module.exports = function apiProxy (app) {
       '/api/me',
       '/api/users',
       '/api/verification'
-    ],
-    authProxy)
+    ], getProxy(`${authService.protocol}://${authService.url}:${authService.port}`))
 
   app.use([
     '/api/categories',
@@ -43,11 +34,12 @@ module.exports = function apiProxy (app) {
     '/api/menus',
     '/api/tags',
     '/api/configurations'
-  ], contentProxy)
+  ], getProxy(`${contentService.protocol}://${contentService.url}:${contentService.port}`))
 
   app.use([
     '/api/assets',
     '/api/storage',
-  ], assetsProxy)
-  app.use('/gp-admin', adminProxy)
+  ], getProxy(`${assetsService.protocol}://${assetsService.url}:${assetsService.port}`))
+
+  app.use('/gp-admin', getProxy(`${adminPanel.protocol}://${adminPanel.url}:${adminPanel.port}`))
 }
