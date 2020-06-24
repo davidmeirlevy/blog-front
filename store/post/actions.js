@@ -9,7 +9,7 @@ export default {
   },
   [ACTIONS.LOAD_POST] ({ commit, state }) {
     return this.$axios.$get(
-      `api/posts/${state[DATA.CATEGORY_ID]}/${state[DATA.POST_ID]}`,
+      `api/posts/${encodeURIComponent(state[DATA.CATEGORY_ID])}/${encodeURIComponent(state[DATA.POST_ID])}`,
       { params: { target: 'front' } })
       .then(data => commit(MUTATIONS.SET_METADATA, data))
   }
