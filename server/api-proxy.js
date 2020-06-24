@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware: proxy } = require('http-proxy-middleware')
 const { authService, contentService, adminPanel, assetsService, tenant } = require('../config')
 
 /**
