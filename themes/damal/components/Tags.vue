@@ -17,9 +17,10 @@
 <style scoped lang="scss">
 	@import "../colors";
 	.tag {
+		display: inline-block;
 		font-size: 80%;
 		border-radius: 3px;
-		padding: 0 5px;
+		padding: 2px 6px;
 		background-color: $mainColor;
 		color: #fff;
 		margin: 0 2.5px;

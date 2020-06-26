@@ -8,8 +8,8 @@
 
   export default {
     components: { Category },
-    asyncData ({ store, route }) {
-      return fetchCategory(store, route)
+    asyncData ({ store, route, error }) {
+      return fetchCategory(store, route, error)
     },
     setup () {
       return useCategoryState()
