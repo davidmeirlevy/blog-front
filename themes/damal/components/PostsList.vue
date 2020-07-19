@@ -1,13 +1,10 @@
 <template>
 	<div>
-		<section v-for="post in posts" :key="post._id">
+		<section v-for="post in posts" :key="post._id" @click="navigate(post)">
 			<div v-if="post.thumbnail"><img :src="post.thumbnail" :alt="post.title"></div>
 			<div>
 				<h3>
-					<nuxt-link
-							:to="{params: {post: post.path, category: post.category.path || post.category}, name: 'category-post'}">
-						{{post.title}}
-					</nuxt-link>
+					<nuxt-link :to="getPostLinkParams(post)">{{post.title}}</nuxt-link>
 				</h3>
 				<small class="created">{{post.created | dateTime}}</small>
 				<div class="short" v-html="post.short"></div>
@@ -17,10 +14,19 @@
 </template>
 
 <script>
+  import { getPostLinkParams, usePostNavigation } from '../../../compositions/post-link-params'
+
   export default {
     props: {
       posts: Array,
     },
+    setup () {
+
+      return {
+        getPostLinkParams,
+        navigate: usePostNavigation()
+      }
+    }
   }
 </script>
 
