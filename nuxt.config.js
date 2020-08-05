@@ -37,9 +37,9 @@ module.exports = {
     '~/plugins/composition-api',
   ],
   /*
-  ** Nuxt.js dev-modules
+  ** Nuxt.js build-modules
   */
-  devModules: [],
+  buildModules: [],
   /*
   ** Nuxt.js modules
   */
