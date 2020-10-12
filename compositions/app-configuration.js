@@ -1,10 +1,10 @@
-import { useState } from 'vuex-composition-helpers/dist'
+import { useContext, computed } from '@nuxtjs/composition-api'
 
 export function fetchConfiguration ($store) {
-  return $store.dispatch('init')
+	return $store.dispatch('init')
 }
 
 export function useConfiguration () {
-  const { config } = useState(['config'])
-  return config
+	const { store } = useContext()
+	return computed(() => store.state.config)
 }

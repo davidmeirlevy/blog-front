@@ -1,6 +1,6 @@
 {
   "name": "blog-front",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "vue blog project",
   "author": "David Meir-Levy <davidmeirlevy@gmail.com>",
   "private": false,
@@ -15,15 +15,16 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/component-cache": "^1.1.5",
-    "@vue/composition-api": "^0.5.0",
+    "@nuxtjs/composition-api": "^0.12.5",
     "cross-env": "^5.2.1",
     "express": "^4.16.4",
     "http-proxy-middleware": "^1.0.4",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
-    "nuxt": "^2.12.2",
+    "nuxt": "^2.14.4",
     "sass-loader": "^9.0.2",
     "vuex": "^3.1.2",
-    "vuex-composition-helpers": "^1.0.16"
+    "vuex-composition-helpers": "^1.0.21"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

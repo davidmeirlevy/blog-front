@@ -1,20 +1,25 @@
 <template>
-	<Index :posts="posts" :tags="tags"/>
+<Index :posts="posts" :tags="tags" />
 </template>
 
 <script>
-  import Index from '~/.current_theme/Index'
-  import { useHomeState, fetchHomeData } from '../compositions/home-state'
+import Index from "~/.current_theme/Index";
+import {
+    useHomeState,
+    fetchHomeData
+} from "../compositions/home-state";
 
-  export default {
+export default {
     components: {
-      Index,
+        Index,
     },
-    asyncData ({ store }) {
-      return fetchHomeData(store)
+    asyncData({
+        store
+    }) {
+        return fetchHomeData(store);
     },
-    setup () {
-      return useHomeState()
+    setup() {
+        return useHomeState();
     },
-  }
+};
 </script>

@@ -12,39 +12,38 @@
 	</div>
 </template>
 <script>
-  import { isFrontMounted } from '../compositions/front-mounted'
-  import { locationHref } from '../compositions/location-href'
-  import { computed } from '@vue/composition-api'
+	import { isFrontMounted } from '../compositions/front-mounted'
+	import { locationHref } from '../compositions/location-href'
+	import { computed, useMeta, defineComponent } from '@nuxtjs/composition-api'
 
-  export default {
-    name: 'SharePost',
-    props: {
-      post: Object,
-    },
-    setup (props) {
-      const isMounted = isFrontMounted()
-      const href = locationHref()
-      const links = computed(() => {
-        return {
-          fb: 'https://www.facebook.com/share.php?u=' + href.value,
-          linkedin: 'https://www.linkedin.com/cws/share?url=' + href.value,
-          twitter: `https://twitter.com/intent/tweet?text=${props.post.title}&url=${href.value}`
-        }
-      })
-      return {
-        isMounted,
-        href,
-        links
-      }
-    },
-    head () {
-      return {
-        link: [
-          { rel: 'stylesheet', href: '/socicon/css/socicon.min.css' }
-        ]
-      }
-    }
-  }
+	export default defineComponent({
+		name: 'SharePost',
+		props: {
+			post: Object
+		},
+    head: {},
+		setup (props) {
+			const isMounted = isFrontMounted()
+			const href = locationHref()
+			const links = computed(() => {
+				return {
+					fb: 'https://www.facebook.com/share.php?u=' + href.value,
+					linkedin: 'https://www.linkedin.com/cws/share?url=' + href.value,
+					twitter: `https://twitter.com/intent/tweet?text=${props.post.title}&url=${href.value}`
+				}
+			})
+			useMeta({
+				link: [
+					{ rel: 'stylesheet', href: '/socicon/css/socicon.min.css' }
+				]
+			})
+			return {
+				isMounted,
+				href,
+				links
+			}
+		}
+	})
 </script>
 <style scoped lang="scss">
 	@import "../colors";

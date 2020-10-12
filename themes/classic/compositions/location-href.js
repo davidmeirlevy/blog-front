@@ -1,4 +1,4 @@
-import { computed } from '@vue/composition-api'
+import { computed } from '@nuxtjs/composition-api'
 
 export function locationHref () {
   return computed(() => location.href)

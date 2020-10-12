@@ -1,4 +1,4 @@
-import { onMounted, ref } from '@vue/composition-api'
+import { onMounted, ref } from '@nuxtjs/composition-api'
 
 export function isFrontMounted () {
   const mounted = ref(false)

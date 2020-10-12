@@ -7,25 +7,26 @@
 	</form>
 </template>
 <script>
-  import { ref } from '@vue/composition-api'
+	import { ref, useContext } from '@nuxtjs/composition-api'
 
-  export default {
-    setup (_, { root: { $router } }) {
-      const input = ref(null)
+	export default {
+		setup () {
+			const { app: { router } } = useContext()
+			const input = ref(null)
 
-      return {
-        input,
-        search () {
-          $router.push({
-            name: 'search',
-            query: {
-              q: input.value.value
-            }
-          })
-        }
-      }
-    }
-  }
+			return {
+				input,
+				search () {
+					router.push({
+						name: 'search',
+						query: {
+							q: input.value.value
+						}
+					})
+				}
+			}
+		}
+	}
 </script>
 <style scoped>
 	form {
@@ -59,6 +60,7 @@
 			padding: 0 10px;
 			width: 100%;
 		}
+
 		input {
 			font-size: 12px;
 			width: 100%;

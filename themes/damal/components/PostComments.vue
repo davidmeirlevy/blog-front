@@ -7,17 +7,26 @@
 	</div>
 </template>
 <script>
-  import { computed, watch } from '@vue/composition-api'
+  import { computed, watch, useMeta, defineComponent } from '@nuxtjs/composition-api'
   import { isFrontMounted } from '../compositions/front-mounted'
 
-  export default {
+  export default defineComponent({
     name: 'PostComments',
     props: {
       post: Object,
     },
+    head: {},
     setup (props, { root }) {
       const href = computed(() => location.href)
       const isMounted = isFrontMounted()
+			useMeta({
+				script: [{
+					hid: 'facebook',
+					src: 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=1126115047726666',
+					crossorigin: 'anonymous',
+					async: true, defer: true
+				}]
+			})
 
       watch(() => isMounted.value, async () => {
         await root.$nextTick()
@@ -29,18 +38,8 @@
         href,
         isMounted
       }
-    },
-    head () {
-      return {
-        script: [{
-          hid: 'facebook',
-          src: 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=1126115047726666',
-          crossorigin: 'anonymous',
-          async: true, defer: true
-        }]
-      }
     }
-  }
+  })
 </script>
 <style scoped>
 	.comments-list {

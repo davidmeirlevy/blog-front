@@ -11,7 +11,7 @@
 	</div>
 </template>
 <script>
-  import { ref } from '@vue/composition-api'
+  import { ref } from '@nuxtjs/composition-api'
   import { useMenuLinks } from '../../../compositions/main-menu'
   import MenuLink from '../../../components/MenuLink'
   import SearchForm from './SearchForm'

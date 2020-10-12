@@ -1,29 +1,31 @@
 <template>
-	<div>
-		<template v-if="posts && !posts.length">No posts yet.</template>
-		<Loader v-if="!posts"/>
-		<template v-else-if="posts.length">
-			<TopPostsGroup :posts="topPosts"/>
-			<TagsBox :tags="tags"/>
-			<PostsList :posts="otherPosts"/>
-		</template>
-	</div>
+  <div>
+    <template v-if="posts && !posts.length">No posts yet.</template>
+    <Loader v-if="!posts" />
+    <template v-else-if="posts.length">
+      <TopPostsGroup :posts="topPosts" />
+      <TagsBox :tags="tags" />
+      <PostsList :posts="otherPosts" />
+    </template>
+  </div>
 </template>
 <script>
   import TopPostsGroup from './components/TopPostsGroup'
   import PostsList from './components/PostsList'
   import TagsBox from './components/TagsBox'
-  import { computed } from '@vue/composition-api'
+  import { computed, useMeta, defineComponent } from '@nuxtjs/composition-api'
   import { useConfiguration } from '../../compositions/app-configuration'
   import Loader from './components/Loader'
 
-  export default {
+  export default defineComponent({
     props: {
       posts: Array,
       tags: Array
     },
+    head: {},
     components: { Loader, TagsBox, PostsList, TopPostsGroup },
     setup (props) {
+      const config = useConfiguration()
       const topPosts = computed(() => {
         return props.posts ? props.posts.filter((post, index) => index < 5) : []
       })
@@ -31,18 +33,15 @@
         const [a, b, c, d, e, ...otherPosts] = props.posts || []
         return otherPosts
       })
+      useMeta({
+        titleTemplate: `${config.value.titleSuffix}`
+      })
       return {
         topPosts,
-        otherPosts,
-        config: useConfiguration()
-      }
-    },
-    head () {
-      return {
-        titleTemplate: `${this.config.titleSuffix}`
+        otherPosts
       }
     }
-  }
+  })
 </script>
 
 <style>

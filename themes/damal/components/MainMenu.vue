@@ -10,7 +10,7 @@
 </template>
 <script>
   import MenuLink from '../../../components/MenuLink'
-  import { ref } from '@vue/composition-api'
+  import { ref } from '@nuxtjs/composition-api'
   import { useMenuLinks } from '../../../compositions/main-menu'
 
   export default {

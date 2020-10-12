@@ -7,7 +7,7 @@
 	</div>
 </template>
 <script>
-  import { computed, watch } from '@vue/composition-api'
+  import { computed, watch } from '@nuxtjs/composition-api'
   import { isFrontMounted } from '../compositions/front-mounted'
 
   export default {

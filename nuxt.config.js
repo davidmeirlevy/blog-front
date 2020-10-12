@@ -33,13 +33,14 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/date-time.filter',
-    '~/plugins/composition-api',
+    '~/plugins/date-time.filter'
   ],
   /*
   ** Nuxt.js build-modules
   */
-  buildModules: [],
+  buildModules: [
+		'@nuxtjs/composition-api'
+	],
   /*
   ** Nuxt.js modules
   */

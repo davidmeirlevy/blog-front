@@ -30,7 +30,7 @@
   import SharePost from './components/SharePost'
   import Tags from './components/Tags'
   import PostComments from './components/PostComments'
-  import { computed } from '@vue/composition-api'
+  import { computed } from '@nuxtjs/composition-api'
   import Loader from './components/Loader'
 
   export default {
@@ -84,7 +84,13 @@
 		margin: 10px;
 		padding: 10px;
 		font-family: monospace;
-		background-color: #ccc;
+		background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    word-break: break-all;
+    *, a {
+      color: #fff;
+    }
 	}
 
 	.tags-container {

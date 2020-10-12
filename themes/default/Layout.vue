@@ -1,80 +1,74 @@
 <template>
-	<div>
-		<header>
-			<Logo/>
-			<MainMenu/>
-		</header>
-		<nuxt/>
-		<Footer/>
-	</div>
+<div class="app">
+  <Header />
+  <nuxt />
+  <Footer />
+  <div id="fb-root"></div>
+</div>
 </template>
+
 <script>
-  import Logo from './components/Logo'
-  import MainMenu from './components/MainMenu'
-  import Footer from './components/Footer'
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
-  export default {
-    components: {
-      Logo,
-      MainMenu,
-      Footer
-    },
-    head: {
-      titleTemplate: '%s | greenpress - powerful blog platform'
-    }
-  }
+export default {
+  components: {
+    Header,
+    Footer,
+  },
+  head: {
+    link: [{
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap",
+    }, ],
+  },
+};
 </script>
-<style>
-	html {
-		font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-		'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-		font-size: 16px;
-		word-spacing: 1px;
-		-ms-text-size-adjust: 100%;
-		-webkit-text-size-adjust: 100%;
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-		box-sizing: border-box;
-	}
 
-	*,
-	*:before,
-	*:after {
-		box-sizing: border-box;
-		margin: 0;
-	}
+<style lang="scss">
+@import "colors";
 
-	a {
-		color: #03414c;
-		text-decoration: none;
-	}
+html {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
 
-	a:hover {
-		text-decoration: underline;
-	}
+html[dir="rtl"] {
+  text-align: right;
+}
 
-	header {
-		display: flex;
-		background-color: #d7e8e6;
-	}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
 
-	@media all and (max-width: 500px) {
-		header {
-			flex-direction: column;
-		}
+a {
+  text-decoration: none;
+  color: $mainColor;
+}
 
-		.logo {
-			width: 100%;
-		}
-	}
+a:hover {
+  text-decoration: underline;
+}
 
-	@media all and (min-width: 500px) {
-		header {
-			align-items: flex-end;
-		}
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-		.logo {
-			height: 150px;
-		}
-	}
+@media all and (min-width: 500px) {
+  .app {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .app {
+    margin: 0 auto;
+  }
+}
 </style>

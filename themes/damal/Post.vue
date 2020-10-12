@@ -29,7 +29,7 @@
   import SharePost from './components/SharePost'
   import Tags from './components/Tags'
   import PostComments from './components/PostComments'
-  import { computed } from '@vue/composition-api'
+  import { computed } from '@nuxtjs/composition-api'
   import Loader from './components/Loader'
 
   export default {

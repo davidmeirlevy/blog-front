@@ -1,5 +1,27 @@
 const { createProxyMiddleware: proxy } = require('http-proxy-middleware')
+const fetch = require('node-fetch')
 const { authService, contentService, adminPanel, assetsService, tenant } = require('../config')
+
+function getProxy (target) {
+	return proxy({
+		target,
+		changeOrigin: true,
+		headers: {
+			tenant
+		},
+		onProxyReq (proxyReq, req) {
+			proxyReq.setHeader('user', req.user || '')
+		}
+	})
+}
+
+function getProxyTarget (service) {
+	return `${service.protocol}://${service.url}:${service.port}`
+}
+
+function useProxy (app, service) {
+	app.use(service.proxies, getProxy(getProxyTarget(service)))
+}
 
 /**
  * This function is a temporary thingy because I'm too lazy right now
@@ -9,37 +31,43 @@ const { authService, contentService, adminPanel, assetsService, tenant } = requi
  */
 module.exports = function apiProxy (app) {
 
-  function getProxy (target) {
-    return proxy({
-      target,
-      changeOrigin: true,
-      headers: {
-        tenant
-      }
-    })
-  }
+	const meUrl = getProxyTarget(authService) + '/api/me'
 
-  app.use([
-      '/api/signin',
-      '/api/signup',
-      '/api/token',
-      '/api/me',
-      '/api/users',
-      '/api/verification'
-    ], getProxy(`${authService.protocol}://${authService.url}:${authService.port}`))
+	app.use([
+		...contentService.proxies,
+		...assetsService.proxies,
+	], (req, res, next) => {
+		if (!(req.headers.authorization || req.headers.cookie && req.headers.cookie.includes('token='))) {
+			next()
+			return
+		}
+		fetch(meUrl, {
+			headers: {
+				'Content-Type': 'application/json',
+				cookie: req.headers.cookie,
+				authorization: req.headers.authorization
+			}
+		})
+			.then(response => {
+				const setCookie = response.headers.raw()['set-cookie']
+				if (setCookie) {
+					res.set('set-cookie', setCookie)
+				}
+				if (response.status === 200) {
+					return response.text()
+				}
+			})
+			.then(user => {
+				req.user = user
+				next()
+			})
+			.catch(() => {
+				next()
+			})
+	})
 
-  app.use([
-    '/api/categories',
-    '/api/posts',
-    '/api/menus',
-    '/api/tags',
-    '/api/configurations'
-  ], getProxy(`${contentService.protocol}://${contentService.url}:${contentService.port}`))
-
-  app.use([
-    '/api/assets',
-    '/api/storage',
-  ], getProxy(`${assetsService.protocol}://${assetsService.url}:${assetsService.port}`))
-
-  app.use('/gp-admin', getProxy(`${adminPanel.protocol}://${adminPanel.url}:${adminPanel.port}`))
+	useProxy(app, authService)
+	useProxy(app, contentService)
+	useProxy(app, assetsService)
+	useProxy(app, adminPanel)
 }
