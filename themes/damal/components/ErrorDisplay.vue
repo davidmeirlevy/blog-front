@@ -38,7 +38,7 @@
 	import FormInput from './FormInput'
 	import Form from './Form'
 	import { reactive } from '@nuxtjs/composition-api'
-	import { isEmail } from '../../../helpers/validators'
+  import { isEmail } from '~/compositions/validators'
 
 	export default {
 		components: {
