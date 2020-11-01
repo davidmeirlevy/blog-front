@@ -47,5 +47,13 @@ module.exports = {
 		url: process.env.ADMIN_PANEL_URL || localhost,
 		port: process.env.ADMIN_PANEL_PORT || 3001,
 		proxies: getProxies(process.env.ADMIN_PANEL_PROXIES, ['/gp-admin'])
+	},
+	draftsService: {
+		protocol: process.env.DRAFTS_SERVICE_PROTOCOL || 'http',
+		url: process.env.DRAFTS_SERVICE_URL || localhost,
+		port: process.env.DRAFTS_SERVICE_PORT || 9005,
+		proxies: getProxies(process.env.DRAFTS_SERVICE_PROXIES, [
+			'/api/drafts'
+		])
 	}
 }

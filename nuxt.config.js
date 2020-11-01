@@ -1,7 +1,6 @@
 const { port } = require('./config')
 
 module.exports = {
-  mode: 'universal',
   server: {
     port: port, // default: 3000
     host: '0.0.0.0', // default: localhost,

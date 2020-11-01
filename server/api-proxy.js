@@ -1,6 +1,6 @@
 const { createProxyMiddleware: proxy } = require('http-proxy-middleware')
 const fetch = require('node-fetch')
-const { authService, contentService, adminPanel, assetsService, tenant } = require('../config')
+const { authService, contentService, adminPanel, assetsService, tenant, draftsService } = require('../config')
 
 function getProxy (target) {
 	return proxy({
@@ -36,6 +36,7 @@ module.exports = function apiProxy (app) {
 	app.use([
 		...contentService.proxies,
 		...assetsService.proxies,
+		...draftsService.proxies
 	], (req, res, next) => {
 		if (!(req.headers.authorization || req.headers.cookie && req.headers.cookie.includes('token='))) {
 			next()
@@ -68,6 +69,7 @@ module.exports = function apiProxy (app) {
 
 	useProxy(app, authService)
 	useProxy(app, contentService)
+	useProxy(app, draftsService)
 	useProxy(app, assetsService)
 	useProxy(app, adminPanel)
 }

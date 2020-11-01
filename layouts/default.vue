@@ -1,5 +1,5 @@
 <template>
-	<Layout/>
+  <Layout />
 </template>
 <script>
   import Layout from '~/.current_theme/Layout'
@@ -28,4 +28,59 @@
     }
   }
 </script>
+<style lang="scss">
+  :root {
+    --ck-image-style-spacing: 1.5em;
+  }
+
+  figure.image {
+    max-width: 100%;
+    img {
+      max-width: 100%;
+    }
+    &.image-style-side {
+      float: right;
+      margin-left: var(--ck-image-style-spacing);
+      max-width: 50%;
+      img {
+        width: 100%;
+      }
+    }
+
+    &.image-style-align-left {
+      float: left;
+      margin-right: var(--ck-image-style-spacing);
+      img {
+        width: 100%;
+      }
+    }
+
+    &.image-style-align-center {
+      margin-left: auto;
+      margin-right: auto;
+      img {
+        width: 100%;
+      }
+    }
+
+    &.image-style-align-right {
+      float: right;
+      margin-left: var(--ck-image-style-spacing);
+      img {
+        width: 100%;
+      }
+    }
+
+    figcaption {
+      word-break: break-word;
+      color: #333;
+      background-color: #f7f7f7;
+      padding: .6em;
+      font-size: .75em;
+      outline-offset: -1px;
+      text-align: center;
+      line-height: 40px;
+    }
+  }
+</style>
 

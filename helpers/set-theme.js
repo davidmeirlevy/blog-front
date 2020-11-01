@@ -1,14 +1,22 @@
 const {execSync} = require('child_process');
 const {unlinkSync} = require('fs');
+const path = require('path');
 const themeName = process.env.THEME || 'default';
 const isWin = process.platform === 'win32';
 
+function getThemePath(theme) {
+	const globalKeyWord = 'global:';
+	return theme.includes(globalKeyWord) ? path.resolve(theme.replace(globalKeyWord, '')) : `themes/${theme}/`; 
+}
+
 function getLinuxExec(theme) {
-	return `ln -s themes/${theme}/ .current_theme`;
+	const themePath = getThemePath(theme);
+	return `ln -s ${themePath} .current_theme`;
 }
 
 function getWindowsExec(theme) {
-	return `mklink /J ".current_theme" "themes/${theme}"`
+	const themePath = getThemePath(theme);
+	return `mklink /J ".current_theme" "${themePath}"`
 }
 
 try {
